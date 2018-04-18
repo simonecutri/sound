@@ -1,0 +1,98 @@
+body{
+	background:black;
+	margin:0;
+}
+
+
+@font-face {
+    font-family: "simolight";
+    src: url(font/AtlasGrotesk-Light.otf);
+}
+
+.item{
+	/*background:blue;*/
+
+	opacity:0;
+}
+
+.visible{
+	opacity:1;
+	height:1500px;
+}
+
+.title{
+	grid-column:3/span 3;
+	background:black; 
+	color:black;
+	opacity:1.0;
+	font-family:"simolight";
+	font-weight:normal;
+	font-size:3.25vw;
+	line-height:1.125em;
+	padding:0.5em;
+	text-shadow: 0 0px 35px rgba(255,255,255,0.55);
+}
+/*
+.prova {
+	border: 3px solid white;
+	padding: 0.5em;
+	margin: 0.5em;
+}
+*/
+
+
+.circle {
+	width: 50px;
+	height: 50px;
+	-moz-border-radius: 150px;
+	-webkit-border-radius: 150px;
+	border-radius: 150px;
+	border: 3px solid white;
+	margin-left: -200%;
+	margin-top: -30%;
+
+}
+
+/* .title.active{
+	color:white;
+	transform:scale(1.2);
+	box-shadow:10px 10px 20px rgb(0,255,0);
+} */
+
+
+
+.item:nth-child(1n){
+	background-color: red;
+}
+
+.item:nth-child(2n){
+	background-color: green;}
+
+.item:nth-child(3n){
+	background-color: yellow;;
+}
+
+.item:nth-child(4n){
+	background-color: blue;
+}
+
+.item:nth-child(5n){
+	background-color: white;
+}
+
+.item:nth-child(6n){
+	background-color: pink;
+}
+
+.item:nth-child(7n){
+	background-color: lightblue;
+}
+
+
+.item:nth-child(8n){
+	background-color: orange;
+}
+
+.item:nth-child(9n){
+	background-color: white;
+}

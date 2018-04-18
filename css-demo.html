@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style-03.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+</head>
+<body>
+	<div data-key="48" class="item"> </div>
+	<div data-key="49" class="item"></div>
+	<div data-key="84" class="item"></div>
+	<div data-key="51" class="item"></div>
+	<div data-key="52" class="item"></div>
+	<div data-key="53" class="item"></div>
+	<div data-key="54" class="item"></div>
+	<div data-key="56" class="item"></div>
+	<div data-key="55" class="item"></div>
+	<div data-key="57" class="item"></div>
+	
+	<div data-key="65" class="item"></div>
+	<div data-key="66" class="item"></div>
+	<div data-key="67" class="item"></div>
+	<div data-key="50" class="item"></div>
+	<div data-key="69" class="item"></div>
+	<div data-key="70" class="item"></div>
+	<div data-key="71" class="item"></div>
+	<div data-key="72" class="item"></div>
+	<div data-key="73" class="item"></div>
+	<div data-key="74" class="item"></div>
+	<div data-key="75" class="item"></div>
+	<div data-key="76" class="item"></div>
+	<div data-key="77" class="item"></div>
+	<div data-key="78" class="item"></div>
+	<div data-key="79" class="item"></div>
+	<div data-key="80" class="item"></div>
+	<div data-key="81" class="item"></div>
+	<div data-key="82" class="item"></div>
+	<div data-key="83" class="item"></div>
+	<div data-key="68" class="item"></div>
+	<div data-key="85" class="item"></div>
+	<div data-key="86" class="item"></div>
+	<div data-key="87" class="item"></div>
+	<div data-key="88" class="item"></div>
+	<div data-key="89" class="item"></div>
+	<div data-key="90" class="item"></div>
+
+
+
+	<audio data-key="48" src="audio/kangreal.wav"></audio>
+	<audio data-key="49" src="audio/1.wav"></audio>
+	<audio data-key="50" src="audio/2.wav"></audio>
+	<audio data-key="51" src="audio/3.wav"></audio>
+	<audio data-key="52" src="audio/4.wav"></audio>
+	<audio data-key="53" src="audio/5.wav"></audio>
+	<audio data-key="54" src="audio/6.wav"></audio>
+	<audio data-key="55" src="audio/7.wav"></audio>
+	<audio data-key="56" src="audio/8.wav"></audio>
+	<audio data-key="57" src="audio/9.wav"></audio>
+
+
+	<audio data-key="65" src="audio/a.wav"></audio>
+	<audio data-key="66" src="audio/dohey.wav"></audio>
+	<audio data-key="67" src="audio/c.wav"></audio>
+	<audio data-key="68" src="audio/d.wav"></audio>
+	<audio data-key="69" src="audio/e.wav"></audio>
+	<audio data-key="70" src="audio/kai.wav"></audio>
+	<audio data-key="71" src="audio/kang.wav"></audio>
+	<audio data-key="72" src="audio/h.wav"></audio>
+	<audio data-key="73" src="audio/i.wav"></audio>
+	<audio data-key="74" src="audio/kor7.wav"></audio>
+	<audio data-key="75" src="audio/muxi.wav"></audio>
+	<audio data-key="76" src="audio/L.wav"></audio>
+	<audio data-key="77" src="audio/xwei.wav"></audio>
+	<audio data-key="78" src="audio/ingrind.wav"></audio>
+	<audio data-key="79" src="audio/o.wav"></audio>
+	<audio data-key="80" src="audio/p.wav"></audio>
+	<audio data-key="81" src="audio/q.wav"></audio>
+	<audio data-key="82" src="audio/wenwen.wav"></audio>
+	<audio data-key="83" src="audio/s.wav"></audio>
+	<audio data-key="84" src="audio/t.wav"></audio>
+	<audio data-key="85" src="audio/u.wav"></audio>
+	<audio data-key="86" src="audio/v.wav"></audio>
+	<audio data-key="87" src="audio/kor4.wav"></audio>
+	<audio data-key="88" src="audio/yogen.wav"></audio>
+	<audio data-key="89" src="audio/y.wav"></audio>
+	<audio data-key="90" src="audio/z.wav"></audio>
+
+
+<script>
+    /** GOAL: When a user opens this page and presses a key that corresponds with
+      * one of our div elements, we should play the audio clip associated with
+      * the keypress, add a class to the specific element that matches with the keypress,
+      * and then remove that class in order to reset the element to it's original state.
+      */
+
+      function clearDesks(){
+      	$('.item').removeClass('visible');
+      }
+
+      const desks = document.querySelectorAll(`.item`);
+    (()=> {
+      const playSound = (e) => {
+
+        
+      	const otherDesks = document.querySelectorAll(`.item`);
+        const soundclip = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const keyelement = document.querySelector(`.item[data-key="${e.keyCode}"]`);
+        if (!soundclip) return undefined; // Stop function from running if key pressed doesn't match up with our elements
+        keyelement.classList.add('playing');
+        setTimeout(function(){ $('.item').removeClass('visible') }, 100);
+       // $('.title').toggleClass('active');//
+        keyelement.classList.add('visible');
+
+        // Ensures that the sound clip always plays from the beginning. Otherwise,
+        // if the 'a' key is pressed twice rapidly, the soundclip will only play through
+        // once.
+        soundclip.currentTime = 0;
+        soundclip.play(); // Play sound
+      }
+      const removeTransition = (e) => {
+        // skip if it's not a transform event
+        if (e.propertyName !== 'transform') return undefined;
+        e.target.classList.remove('playing');
+      }
+      // Find all elements in the document with a class 'key'
+      const keys = document.querySelectorAll('.key');
+      // Listen for any `keydown` events that occur on this browser window instance (this page)
+      // When a `keydown` event is observered, trigger the `playSound` function, passing in the
+      // `keydown` event as the argument (e)
+      window.addEventListener('keydown', playSound);
+
+      keys.forEach(key =>
+        key.addEventListener(
+          'transitionend',
+          (e) => removeTransition.call(key, e)
+        ));
+    })();
+</script>
+</body>
+</html>
